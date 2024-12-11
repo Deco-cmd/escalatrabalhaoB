@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #eae5e5; /* Fundo escuro */
+    color: #0f0f0f; /* Cor da fonte branca */
+}
+
+.header {
+    display: flex;
+    justify-content: flex-start; /* Alinha itens à esquerda */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 20px; /* Espaço entre o título e a legenda */
+    margin: 10px; /* Espaço ao redor do header */
+}
+
+h1 {
+    margin: 0; /* Remove margens extras */
+    font-size: 24px; /* Tamanho do título */
+    margin-left: 0; /* Tira o deslocamento excessivo à esquerda */
+}
+
+.legenda {
+    display: flex;
+    gap: 30px; /* Espaço entre os itens da legenda */
+    font-size: 8px; /* Tamanho da fonte da legenda */
+}
+
+.legenda span {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espaço entre o quadrado e o texto */
+}
+
+.quadrado {
+    width: 10px; /* Tamanho reduzido do quadrado */
+    height: 10px;
+    display: inline-block;
+    border: 1px solid black; /* Borda no quadrado */
+}
+
+.calendar {
+    background-color: #222; /* Fundo escuro para o calendário */
+    padding: 20px;
+    border-radius: 2px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Efeito de sombra */
+}
+
+.month {
+    border: 1px solid #555; /* Cor da borda dos meses */
+    background-color: #f00c0c; /* Fundo mais escuro para os meses */
+}
+
+.days span {
+    background-color: #07ec41; /* Cor padrão dos dias */
+    color: #fff; /* Cor branca no texto */
+}
+
+.days .morning {
+    background-color: #FFD700; /* Manhã - Amarelo */
+    color: #000; /* Cor preta no texto */
+}
+
+.days .afternoon {
+    background-color: #FF8C00; /* Tarde - Laranja */
+    color: #000; /* Cor preta no texto */
+}
+
+.days .night {
+    background-color: #4682B4; /* Noite - Azul */
+    color: #fff; /* Cor branca no texto */
+}
+
+.legend div {
+    color: #fff; /* Cor da fonte na legenda */
+}
+
+.legend span {
+    border: 1px solid #fff; /* Bordas brancas na legenda */
+}

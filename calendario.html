@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário com Turnos Personalizados</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .legenda {
+            font-size: 10px;
+            text-align: left;
+        }
+        .legenda div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .legenda span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 2px;
+            border: 1px solid #ddd;
+        }
+        .manha {
+            background-color: rgb(74, 74, 230);
+        }
+        .tarde {
+            background-color: rgb(245, 176, 48);
+        }
+        .noite {
+            background-color: rgb(243, 45, 45);
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 200px);
+            gap: 5px;
+            margin: 10px auto;
+            padding: 5px;
+        }
+        .mes {
+            border: 1px solid #9d0404;
+            padding: 5px;
+            font-size: 12px;
+        }
+        .mes h2 {
+            font-size: 16px;
+            margin: 5px 0;
+            background-color: #0a0a0a;
+            padding: 5px;
+            border-radius: 3px;
+            color: white;
+        }
+        .dias-semana {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            font-size: 12px;
+            background-color: #f5ebeb;
+            padding: 4px;
+        }
+        .dias {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+        .dia {
+            font-size: 15px;
+            padding: 4px;
+            border: px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Calendário 2025 TURMA B</h1>
+        <div class="legenda">
+            <span><span class="quadrado" style="background-color: blue;"></span> Manhã</span>
+            <span><span class="quadrado" style="background-color: orange;"></span> Tarde</span>
+            <span><span class="quadrado" style="background-color: red;"></span> Noite</span>
+        </div>
+    </div>
+                    <div class="container" id="calendario"></div>
+    <script>
+        // (Mantenha o código JavaScript do calendário aqui, conforme anteriormente fornecido)
+        const meses = [
+            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+        ];
+
+        function gerarDias(mes, ano) {
+            const dias = new Date(ano, mes + 1, 0).getDate(); // Total de dias no mês
+            const primeiroDia = new Date(ano, mes, 1).getDay(); // Dia da semana do 1º dia
+            const diasDoMes = [];
+
+            for (let i = 0; i < primeiroDia; i++) {
+                diasDoMes.push("");
+            }
+
+            for (let dia = 1; dia <= dias; dia++) {
+                diasDoMes.push(dia);
+            }
+
+            return diasDoMes;
+        }
+
+        function turnoManha(dia, mes, ano, inicio, duracao, intervalo) {
+            const dataAtual = new Date(ano, mes, dia);
+            const dataInicio = new Date(ano, 0, inicio);
+            const diasEntre = (dataAtual - dataInicio) / (1000 * 60 * 60 * 24);
+
+            if (diasEntre >= 0 && (diasEntre % (duracao + intervalo)) < duracao) {
+                return "manha";
+            }
+            return "";
+        }
+
+        function turnoTarde(dia, mes, ano, inicio, duracao, intervalo) {
+            const dataAtual = new Date(ano, mes, dia);
+            const dataInicio = new Date(ano, 0, inicio);
+            const diasEntre = (dataAtual - dataInicio) / (1000 * 60 * 60 * 24);
+
+            if (diasEntre >= 0 && (diasEntre % (duracao + intervalo)) < duracao) {
+                return "tarde";
+            }
+            return "";
+        }
+
+        function turnoNoite(dia, mes, ano, inicio, duracao, intervalo) {
+            const dataAtual = new Date(ano, mes, dia);
+            const dataInicio = new Date(ano, 0, inicio);
+            const diasEntre = (dataAtual - dataInicio) / (1000 * 60 * 60 * 24);
+
+            if (diasEntre >= 0 && (diasEntre % (duracao + intervalo)) < duracao) {
+                return "noite";
+            }
+            return "";
+        }
+
+        function gerarCalendario(ano) {
+            const container = document.getElementById("calendario");
+
+            meses.forEach((mes, index) => {
+                const dias = gerarDias(index, ano);
+
+                const divMes = document.createElement("div");
+                divMes.classList.add("mes");
+
+                const tituloMes = document.createElement("h2");
+                tituloMes.textContent = mes;
+                divMes.appendChild(tituloMes);
+
+                const diasSemana = document.createElement("div");
+                diasSemana.classList.add("dias-semana");
+                ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"].forEach(diaSemana => {
+                    const div = document.createElement("div");
+                    div.textContent = diaSemana;
+                    diasSemana.appendChild(div);
+                });
+                divMes.appendChild(diasSemana);
+
+                const diasDiv = document.createElement("div");
+                diasDiv.classList.add("dias");
+
+                dias.forEach((dia, i) => {
+                    const divDia = document.createElement("div");
+                    divDia.classList.add("dia");
+
+                    if (dia) {
+                        divDia.textContent = dia;
+
+                        if (i % 7 === 0) {
+                            divDia.classList.add("domingo");
+                        }
+
+                        if (turnoManha(dia, index, ano, 9, 6, 18)) {
+                            divDia.classList.add("manha");
+                        }
+
+                        if (turnoTarde(dia, index, ano, 1, 6, 18)) {
+                            divDia.classList.add("tarde");
+                        }
+
+                        if (turnoNoite(dia, index, ano, 17, 6, 18)) {
+                            divDia.classList.add("noite");
+                        }
+                    }
+
+                    diasDiv.appendChild(divDia);
+                });
+
+                divMes.appendChild(diasDiv);
+                container.appendChild(divMes);
+            });
+        }
+
+        gerarCalendario(2025);
+    </script>
+</body>
+</html>

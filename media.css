@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 20px 0; /* Espaçamento ajustado acima e abaixo do título */
+    font-size: 1em;
+    text-align: left; /* Centralizado na tela */
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas para desktop */
+    gap: 10px; /* Espaço entre os meses */
+    margin: 0 auto; /* Centraliza o container na tela */
+    padding: 10px;
+    width: 90%; /* Ocupa quase toda a largura da tela */
+    max-width: 1200px; /* Limita a largura máxima em telas grandes */
+    box-sizing: border-box;
+}
+
+.mes {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.mes h2 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.dias-semana, .dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 colunas para dias da semana */
+    gap: 2px;
+}
+
+.dia {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.domingo {
+    color: red;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas para telas médias */
+    }
+
+    h1 {
+        font-size: 1.5em; /* Ajusta o tamanho do título */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr; /* 1 coluna para telas pequenas */
+    }
+
+    h1 {
+        font-size: 1.2em; /* Título menor para telas pequenas */
+    }
+}

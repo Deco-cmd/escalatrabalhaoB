@@ -1,0 +1,75 @@
+.calendar {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #ddd;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-size: 0.8rem;
+    text-align: center;
+    gap: 5px;
+}
+
+.days span {
+    padding: 15px; /* Ajuste o espaço interno */
+    border-radius: 4px;
+    background-color: #444; /* Fundo padrão para os dias */
+    color: #080808;
+}
+
+/* Cores para cada turno */
+.days .morning {
+    background-color: #FFD700; /* Cor da manhã */
+}
+
+.days .afternoon {
+    background-color: #FF8C00; /* Cor da tarde */
+}
+
+.days .night {
+    background-color: #4682B4; /* Cor da noite */
+}
+
+/* Estilo para a legenda */
+.legend {
+    margin-top: 15px;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+}
+
+.legend div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+}
